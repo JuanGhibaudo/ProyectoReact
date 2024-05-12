@@ -1,0 +1,18 @@
+.DetailContainer {
+    display: flex;
+  /*   flex-direction: column;  */
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+  }
+
+.CharacterDetails{
+    font-size: 1.5rem;
+}
+.item{
+    margin-top: 25px;
+}
+
+.Video{
+    padding: 25px;
+}
