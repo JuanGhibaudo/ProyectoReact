@@ -3,6 +3,11 @@ import Image from "../assets/image/LoginVector.jpg";
 import ImageProfile from '../assets/image/Profile.jpg';
 import appFirebase from '../credenciales';
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const mySwal = withReactContent(Swal)
+
 const auth = getAuth(appFirebase)
 
 const Login = () => {
@@ -17,14 +22,25 @@ const Login = () => {
             await createUserWithEmailAndPassword(auth, correo, contraseña)
                 
             } catch (error) {
-                alert("Asegurese que la contraseña tenga 8 o mas caracteres")
+                Swal.fire({
+                    position: "top-center",
+                    icon: "warning",
+                    title: "Asegurese que la contraseña tenga 8 o mas caracteres",
+                    showConfirmButton: false,
+                    timer: 2500
+                  });
             }
         }
         else {
             try {
                 await signInWithEmailAndPassword(auth, correo, contraseña)
             } catch (error) {
-                alert("Alguno de los datos ingresados es incorrecto.")
+                Swal.fire({
+                    icon: "error",
+                    title: "Error!",
+                    text: "Alguno de los datos ingresados es incorrecto",
+                    footer: '<a href="#">Si aún no tenés cuenta ¡registrate!</a>'
+                  });
             }
             
         }
